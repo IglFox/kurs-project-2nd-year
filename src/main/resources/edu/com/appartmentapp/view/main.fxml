@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="10" xmlns="http://javafx.com/javafx/11.0.1"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="edu.com.appartmentapp.controller.MainController">
+
+    <children>
+        <!-- Таблица с квартирами -->
+        <TableView fx:id="tableView" prefHeight="300.0" prefWidth="600.0">
+            <columns>
+                <TableColumn fx:id="idColumn" prefWidth="50.0" text="ID" />
+                <TableColumn fx:id="roomsColumn" prefWidth="80.0" text="Комнат" />
+                <TableColumn fx:id="areaColumn" prefWidth="80.0" text="Площадь (м²)" />
+                <TableColumn fx:id="floorColumn" prefWidth="60.0" text="Этаж" />
+                <TableColumn fx:id="addressColumn" prefWidth="200.0" text="Адрес" />
+                <TableColumn fx:id="priceColumn" prefWidth="100.0" text="Цена (₽)" />
+                <TableColumn fx:id="balconyColumn" prefWidth="80.0" text="Балкон" />
+            </columns>
+        </TableView>
+
+        <Separator />
+
+        <!-- Секция добавления/редактирования -->
+        <Label text="Добавить/Редактировать квартиру:"
+               style="-fx-font-weight: bold; -fx-font-size: 14;" />
+
+        <HBox spacing="10">
+            <VBox spacing="5">
+                <Label text="Комнат:" />
+                <TextField fx:id="roomsField" />
+            </VBox>
+
+            <VBox spacing="5">
+                <Label text="Площадь (м²):" />
+                <TextField fx:id="areaField" />
+            </VBox>
+
+            <VBox spacing="5">
+                <Label text="Этаж:" />
+                <TextField fx:id="floorField" />
+            </VBox>
+
+            <VBox spacing="5">
+                <Label text="Адрес:" />
+                <TextField fx:id="addressField" prefWidth="200" />
+            </VBox>
+        </HBox>
+
+        <HBox spacing="10">
+            <VBox spacing="5">
+                <Label text="Цена (₽):" />
+                <TextField fx:id="priceField" />
+            </VBox>
+
+            <VBox spacing="5">
+                <Label text=" " />
+                <CheckBox fx:id="balconyCheckBox" text="Есть балкон" />
+            </VBox>
+
+            <VBox spacing="5">
+                <Label text=" " />
+                <Button text="Добавить" onAction="#handleAddApartment"
+                        style="-fx-background-color: #4CAF50; -fx-text-fill: white;" />
+            </VBox>
+
+            <VBox spacing="5">
+                <Label text=" " />
+                <Button text="Редактировать" onAction="#handleEditApartment"
+                        style="-fx-background-color: #2196F3; -fx-text-fill: white;" />
+            </VBox>
+
+            <VBox spacing="5">
+                <Label text=" " />
+                <Button text="Удалить" onAction="#handleDeleteApartment"
+                        style="-fx-background-color: #f44336; -fx-text-fill: white;" />
+            </VBox>
+        </HBox>
+
+        <Separator />
+
+        <!-- Секция поиска -->
+        <Label text="Поиск квартир:"
+               style="-fx-font-weight: bold; -fx-font-size: 14;" />
+
+        <HBox spacing="10">
+            <VBox spacing="5">
+                <Label text="По числу комнат:" />
+                <HBox spacing="5">
+                    <TextField fx:id="searchRoomsField" prefWidth="100"
+                               promptText="комнат" />
+                    <Button text="Найти" onAction="#handleSearchByRooms" />
+                </HBox>
+            </VBox>
+
+            <VBox spacing="5">
+                <Label text="По площади (м²):" />
+                <HBox spacing="5">
+                    <TextField fx:id="searchMinAreaField" prefWidth="80"
+                               promptText="мин" />
+                    <Label text="-" />
+                    <TextField fx:id="searchMaxAreaField" prefWidth="80"
+                               promptText="макс" />
+                    <Button text="Найти" onAction="#handleSearchByArea" />
+                </HBox>
+            </VBox>
+
+            <VBox spacing="5">
+                <Label text=" " />
+                <Button text="Показать все" onAction="#handleShowAll" />
+            </VBox>
+        </HBox>
+
+        <Separator />
+
+        <!-- Кнопки файловых операций -->
+        <HBox spacing="10">
+            <Button text="Сохранить в файл" onAction="#handleSaveToFile" />
+
+            <Button text="Загрузить из файла" onAction="#handleLoadFromFile" />
+
+            <Button text="Объединить базы" onAction="#handleMergeDatabase" />
+        </HBox>
+
+        <!-- Промежуток для выравнивания -->
+        <Pane VBox.vgrow="ALWAYS" />
+
+        <!-- Строка состояния -->
+        <Label fx:id="statusLabel" text="Статус: Готов"
+               style="-fx-text-fill: #666666; -fx-font-style: italic; -fx-padding: 5 0;" />
+    </children>
+
+    <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+    </padding>
+</VBox>
